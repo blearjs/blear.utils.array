@@ -1,6 +1,6 @@
 'use strict';
 
-require('../polyfills/array.js');
+require('blear.polyfills.array');
 
 var typeis = require('blear.utils.typeis');
 
