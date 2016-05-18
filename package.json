@@ -1,6 +1,6 @@
 {
   "name": "blear.utils.array",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "数组函数",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",
@@ -23,13 +23,13 @@
     "url": "http://ydr.me"
   },
   "contributors": [],
-  "homepage": "https://github.com/blearjs/blear.__template__",
+  "homepage": "https://github.com/blearjs/blear.utils.array",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blearjs/blear.__template__"
+    "url": "https://github.com/blearjs/blear.utils.array"
   },
   "bugs": {
-    "url": "https://github.com/blearjs/blear.__template__/issues"
+    "url": "https://github.com/blearjs/blear.utils.array/issues"
   },
   "dependencies": {},
   "peerDependencies": {
