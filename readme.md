@@ -1,4 +1,4 @@
-# blearjs.utils.array
+# blear.utils.array
 
 [![Build Status][travis-img]][travis-url] 
 
