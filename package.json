@@ -1,6 +1,6 @@
 {
   "name": "blear.utils.array",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "数组函数",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",

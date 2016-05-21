@@ -77,10 +77,19 @@ describe('index.js', function () {
         expect(arr2).toEqual([2, 3]);
         expect(arr2).not.toBe(arr1);
     });
-    it('.remove',function(){
+
+    it('.remove', function () {
         var arr1 = [1, 2, 3, 4];
-        var indexes = [0,1,2];
-        var arr2 = array.remove(arr1,indexes);
+        var indexes = [0, 1, 2];
+        var arr2 = array.remove(arr1, indexes);
         expect(arr2).toEqual([4]);
+    });
+
+    it('.range', function () {
+        var start = -2;
+        var arr1 = array.range(start, 4);
+        array.each(arr1, function (index, val) {
+            expect(start + index).toEqual(val);
+        });
     });
 });
