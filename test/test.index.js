@@ -92,4 +92,10 @@ describe('index.js', function () {
             expect(start + index).toEqual(val);
         });
     });
+
+    it('.indexOf', function () {
+        expect(array.indexOf([1, 1, 2], 1)).toEqual(0);
+        expect(array.indexOf([1, 1, 2], 1, 1)).toEqual(1);
+        expect(array.indexOf([1, 1, 2], 3, 1)).toEqual(-1);
+    });
 });

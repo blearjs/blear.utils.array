@@ -141,3 +141,15 @@ exports.range = function (start, end) {
         return index + start;
     });
 };
+
+
+/**
+ * 查找元素在数组中的位置
+ * @param array {Array} 数组
+ * @param val {*} 值
+ * @param [startIndex] {Number} 起始值，默认 0
+ * @returns {number|Number|*}
+ */
+exports.indexOf = function (array, val, startIndex) {
+    return array.indexOf(val, startIndex);
+};
