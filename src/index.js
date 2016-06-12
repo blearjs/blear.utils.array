@@ -153,3 +153,19 @@ exports.range = function (start, end) {
 exports.indexOf = function (array, val, startIndex) {
     return array.indexOf(val, startIndex);
 };
+
+
+/**
+ * 遍历降维
+ * @param array {Array} 数组
+ * @param callback {Function} 回调
+ * @param [initValue] {*} 初始值
+ * @returns {*}
+ */
+exports.reduce = function (array, callback, initValue) {
+    if (arguments.length === 2) {
+        return array.reduce(callback);
+    } else {
+        return array.reduce(callback, initValue);
+    }
+};

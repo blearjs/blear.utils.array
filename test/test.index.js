@@ -98,4 +98,26 @@ describe('index.js', function () {
         expect(array.indexOf([1, 1, 2], 1, 1)).toEqual(1);
         expect(array.indexOf([1, 1, 2], 3, 1)).toEqual(-1);
     });
+
+    it('.reduce:2', function () {
+        var t = 0;
+        var arr = ['a', 'b', 'c', 'd'];
+        var ret = array.reduce(arr, function (prev, next) {
+            t++;
+            return prev + next;
+        });
+        expect(t).toEqual(3);
+        expect(ret).toEqual('abcd');
+    });
+
+    it('.reduce:3', function () {
+        var t = 0;
+        var arr = ['a', 'b', 'c', 'd'];
+        var ret = array.reduce(arr, function (prev, next) {
+            t++;
+            return prev + next;
+        }, '');
+        expect(t).toEqual(4);
+        expect(ret).toEqual('abcd');
+    });
 });
