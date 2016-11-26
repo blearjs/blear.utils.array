@@ -1,7 +1,5 @@
 'use strict';
 
-require('blear.polyfills.array');
-
 var typeis = require('blear.utils.typeis');
 
 
