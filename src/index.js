@@ -31,20 +31,28 @@ var likeArray = exports.like = function likeArray(obj) {
  * 数组的遍历
  * @param arr {*} 待遍历数组
  * @param callback {Function} 遍历回调，返回 false 时退出遍历
+ * @param [invertedOrder=false] {Boolean} 是否倒序遍历
  * @returns {*}
  */
-var each = exports.each = function (arr, callback) {
+var each = exports.each = function (arr, callback, invertedOrder) {
     if (!likeArray(arr)) {
         throw new TypeError(arr + ' is NOT like an array');
     }
 
-    var i = -1,
-        n = arr.length;
-    while (++i < n) {
-        // we iterate over sparse items since there is no way to make it
-        // work properly on IE 7-8. see #64
-        if (callback(i, arr[i]) === false) {
-            break;
+    var i = -1;
+    var n = arr.length;
+
+    if (invertedOrder) {
+        while (n--) {
+            if (callback(n, arr[n]) === false) {
+                break;
+            }
+        }
+    } else {
+        while (++i < n) {
+            if (callback(i, arr[i]) === false) {
+                break;
+            }
         }
     }
 

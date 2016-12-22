@@ -32,26 +32,55 @@ describe('index.js', function () {
     });
 
     it('.each', function () {
-        var arr1 = ['a', 'b', 'c'];
-        var ret1 = 0;
-        var ret2 = '';
+        var arr = ['a', 'b', 'c', 'd'];
+        var str1 = '';
+        var str2 = '';
+        var str3 = '';
+        var str4 = '';
+        var str5 = '';
+        var str6 = '';
+        var str7 = '';
+        var str8 = '';
 
-        array.each(arr1, function (index, item) {
-            if (index === 2) {
+        // 顺序
+        array.each(arr, function (index, item) {
+            str1 += index;
+            str2 += item;
+        });
+        expect(str1).toEqual('0123');
+        expect(str2).toEqual('abcd');
+
+        // 顺序 break
+        array.each(arr, function (index, item) {
+            if(item === 'c') {
                 return false;
             }
 
-            ret1 += index;
-            ret2 += item;
+            str3 += index;
+            str4 += item;
         });
+        expect(str3).toEqual('01');
+        expect(str4).toEqual('ab');
 
-        expect(ret1).toEqual(1);
-        expect(ret2).toEqual('ab');
-        expect(function () {
-            array.each(true, function () {
-                //
-            });
-        }).toThrowError(/NOT/);
+        // 倒序
+        array.each(arr, function (index, item) {
+            str5 += index;
+            str6 += item;
+        }, true);
+        expect(str5).toEqual('3210');
+        expect(str6).toEqual('dcba');
+
+        // 倒序 break
+        array.each(arr, function (index, item) {
+            if(item === 'c') {
+                return false;
+            }
+
+            str7 += index;
+            str8 += item;
+        }, true);
+        expect(str7).toEqual('3');
+        expect(str8).toEqual('d');
     });
 
     it('.map', function () {
