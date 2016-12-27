@@ -117,32 +117,19 @@ exports.from = function (obj) {
 
 
 /**
- * 根据元素删除数组元素，会改变原数组
- * @param arr {Array} 待删除数组
- * @param item {*} 待删除的对象
- * @param [deep=false] {Boolean} 是否深度删除，即删除所有匹配项目
- * @returns {Array}
+ * 按索引顺序删除
+ * @param arr
+ * @param orderedIndexes
+ * @returns {*}
  */
-exports.delete = function (arr, item, deep) {
-    var once = function () {
-        var foundIndex = arr.indexOf(item);
+var remove = function (arr, orderedIndexes) {
+    var removeLength = 0;
 
-        if (foundIndex === -1) {
-            return false;
-        }
+    each(orderedIndexes, function (_, index) {
+        arr.splice(index - removeLength, 1);
+        removeLength++;
+    });
 
-        arr.splice(foundIndex, 1);
-    };
-
-    once();
-
-    if (deep) {
-        while (once() !== false) {
-            //
-        }
-    }
-
-    once = null;
     return arr;
 };
 
@@ -158,14 +145,30 @@ exports.remove = function (arr, indexes) {
         return a - b;
     });
 
-    var removeLength = 0;
+    return remove(arr, indexes);
+};
 
-    each(indexes, function (index) {
-        arr.splice(index - removeLength, 1);
-        removeLength++;
+/**
+ * 根据元素删除数组元素，会改变原数组
+ * @param arr {Array} 待删除数组
+ * @param item {*} 待删除的对象
+ * @param [deep=false] {Boolean} 是否深度删除，即删除所有匹配项目
+ * @returns {Array}
+ */
+exports.delete = function (arr, item, deep) {
+    var indexes = [];
+
+    each(arr, function (index, _item) {
+        if (item === _item) {
+            indexes.push(index);
+
+            if (!deep) {
+                return false;
+            }
+        }
     });
 
-    return arr;
+    return remove(arr, indexes);
 };
 
 
