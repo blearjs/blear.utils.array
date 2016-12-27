@@ -52,7 +52,7 @@ describe('index.js', function () {
 
         // 顺序 break
         array.each(arr, function (index, item) {
-            if(item === 'c') {
+            if (item === 'c') {
                 return false;
             }
 
@@ -72,7 +72,7 @@ describe('index.js', function () {
 
         // 倒序 break
         array.each(arr, function (index, item) {
-            if(item === 'c') {
+            if (item === 'c') {
                 return false;
             }
 
@@ -107,11 +107,26 @@ describe('index.js', function () {
         expect(arr2).not.toBe(arr1);
     });
 
+    it('.delete: no deep', function () {
+        var arr1 = [1, 2, 3, 4, 1, 2, 3, 4];
+        var arr2 = array.delete(arr1, 2);
+        expect(arr2).toEqual([1, 3, 4, 1, 2, 3, 4]);
+        expect(arr2).toBe(arr1);
+    });
+
+    it('.delete: deep', function () {
+        var arr1 = [1, 2, 3, 4, 1, 2, 3, 4];
+        var arr2 = array.delete(arr1, 2, true);
+        expect(arr2).toEqual([1, 3, 4, 1, 3, 4]);
+        expect(arr2).toBe(arr1);
+    });
+
     it('.remove', function () {
         var arr1 = [1, 2, 3, 4];
-        var indexes = [0, 1, 2];
+        var indexes = [1, 2, 0];
         var arr2 = array.remove(arr1, indexes);
         expect(arr2).toEqual([4]);
+        expect(arr2).toBe(arr1);
     });
 
     it('.range', function () {

@@ -117,22 +117,55 @@ exports.from = function (obj) {
 
 
 /**
- * 根据索引值删除数组元素
- * @todo 不能改变原数组的引用？
+ * 根据元素删除数组元素，会改变原数组
+ * @param arr {Array} 待删除数组
+ * @param item {*} 待删除的对象
+ * @param [deep=false] {Boolean} 是否深度删除，即删除所有匹配项目
+ * @returns {Array}
+ */
+exports.delete = function (arr, item, deep) {
+    var once = function () {
+        var foundIndex = arr.indexOf(item);
+
+        if (foundIndex === -1) {
+            return false;
+        }
+
+        arr.splice(foundIndex, 1);
+    };
+
+    once();
+
+    if (deep) {
+        while (once() !== false) {
+            //
+        }
+    }
+
+    once = null;
+    return arr;
+};
+
+/**
+ * 根据索引值删除数组元素，会改变原数组
  * @param arr {Array} 待删除数组
  * @param indexes {Array} 待删除的索引值
  * @returns {Array}
  */
 exports.remove = function (arr, indexes) {
-    var map = {};
-
-    each(indexes, function (i, item) {
-        map[item] = 1;
+    // 先按从小到大排序待删除的索引值
+    indexes.sort(function (a, b) {
+        return a - b;
     });
 
-    return filter(arr, function (item, index) {
-        return !map[index];
+    var removeLength = 0;
+
+    each(indexes, function (index) {
+        arr.splice(index - removeLength, 1);
+        removeLength++;
     });
+
+    return arr;
 };
 
 
@@ -151,13 +184,13 @@ exports.range = function (start, end) {
 
 /**
  * 查找元素在数组中的位置
- * @param array {Array} 数组
+ * @param arr {Array} 数组
  * @param val {*} 值
  * @param [startIndex] {Number} 起始值，默认 0
  * @returns {number|Number|*}
  */
-exports.indexOf = function (array, val, startIndex) {
-    return array.indexOf(val, startIndex);
+exports.indexOf = function (arr, val, startIndex) {
+    return arr.indexOf(val, startIndex);
 };
 
 
