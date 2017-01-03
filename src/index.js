@@ -136,10 +136,14 @@ var remove = function (arr, orderedIndexes) {
 /**
  * 根据索引值删除数组元素，会改变原数组
  * @param arr {Array} 待删除数组
- * @param indexes {Array} 待删除的索引值
+ * @param indexes {Array|Number} 待删除的索引值
  * @returns {Array}
  */
 exports.remove = function (arr, indexes) {
+    if (typeis.Number(indexes)) {
+        indexes = [indexes];
+    }
+
     // 先按从小到大排序待删除的索引值
     indexes.sort(function (a, b) {
         return a - b;

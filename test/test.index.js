@@ -121,6 +121,13 @@ describe('index.js', function () {
         expect(arr2).toBe(arr1);
     });
 
+    it('.remove one', function () {
+        var arr1 = [1, 2, 3, 4];
+        var arr2 = array.remove(arr1, 2);
+        expect(arr2).toEqual([1, 2, 4]);
+        expect(arr2).toBe(arr1);
+    });
+
     it('.remove', function () {
         var arr1 = [1, 2, 3, 4];
         var indexes = [1, 2, 0];
